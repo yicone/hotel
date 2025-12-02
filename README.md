@@ -294,6 +294,10 @@ If you're behind a corporate proxy, replace `"proxy"` with your network proxy IP
 }
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development instructions, including setup, testing, and CI details.
+
 ## License
 
 MIT
