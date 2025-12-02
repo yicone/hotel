@@ -46,6 +46,16 @@ If you are benefiting from hotel, you can support its development on [Patreon](h
 
 * [Starting apps with Hotel - Spacedojo Code Kata by Josh Owens](https://www.youtube.com/watch?v=BHW4tzctQ0k)
 
+## Roadmap 🚀
+ 
+We are actively working on modernizing Hotel! Here is what's coming next:
+ 
+- **CLI Enhancements**: New `restart` and `open` commands.
+- **Proxy Improvements**: Support for self-signed certificates and better WebSocket handling.
+- **Modern Web UI**: Complete rewrite of the frontend using Vite and React 18.
+ 
+Welcome PRs! Check out `openspec/changes` for details.
+ 
 ## Features
 
 * __Local domains__ - `http://project.local`
