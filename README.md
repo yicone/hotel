@@ -18,6 +18,10 @@ Hotel works great on any OS (macOS, Linux, Windows) and with __all servers :hear
 
 _To all the amazing people who have answered the Hotel survey, thanks so much <3 !_
 
+## v1.0.0
+
+* Fix invalid args type on Node v14
+
 ## v0.8.0 upgrade
 
 `.localhost` replaces `.dev` local domain and is the new default. See https://ma.ttias.be/chrome-force-dev-domains-https-via-preloaded-hsts/ for context.
@@ -71,6 +75,8 @@ You can also visit https://nodejs.org.
 To use local `.localhost` domains, you need to configure your network or browser to use hotel's proxy auto-config file or you can skip this step for the moment and go directly to http://localhost:2000
 
 [__See instructions here__](https://github.com/typicode/hotel/blob/master/docs/README.md).
+
+> **Note:** On some modern browsers (like Chrome) and operating systems, `*.localhost` domains may be forced to resolve to `127.0.0.1` via DNS, bypassing the PAC file or proxy configuration. If you encounter this issue, you can access your apps via `http://localhost:2000/app-name`.
 
 ### Add your servers
 
