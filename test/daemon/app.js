@@ -67,7 +67,7 @@ test.before(async () => {
   servers.add('http://example.com', { name: 'proxy-to-remove' })
 
   // Add URL
-  servers.add('http://localhost:4000', { name: 'proxy' })
+  servers.add('http://127.0.0.1:4000', { name: 'proxy' })
 
   // Add https URL
   servers.add('https://jsonplaceholder.typicode.com', {
@@ -268,7 +268,7 @@ test.cb('GET http://localhost:2000/proxy should redirect to target', t => {
   request(app)
     .get('/proxy')
     .set('Host', 'localhost')
-    .expect('location', /http:\/\/localhost:4000/)
+    .expect('location', /http:\/\/127.0.0.1:4000/)
     .expect(302, t.end)
 })
 
