@@ -17,17 +17,19 @@ function ensureDistExists(t) {
   t.true(exists, 'dist directory must exist (try to run `npm run build`)')
 }
 
-test.before(() => {
+test.before(async () => {
   // Set request timeout to 20 seconds instead of 5 seconds for slower CI servers
   conf.timeout = 20000
 
   // Fake server to respond to URL
-  http
-    .createServer((req, res) => {
-      res.statusCode = 200
-      res.end(`ok - host: ${req.headers.host}`)
-    })
-    .listen(4000)
+  await new Promise(resolve => {
+    http
+      .createServer((req, res) => {
+        res.statusCode = 200
+        res.end(`ok - host: ${req.headers.host}`)
+      })
+      .listen(4000, resolve)
+  })
 
   // Add server
   servers.add('node index.js', {
