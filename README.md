@@ -79,7 +79,7 @@ Welcome PRs! Check out `openspec/changes` for details.
 ## Install
 
 ```sh
-npm install -g hotel && hotel start
+npm install -g @yicone/hotel && hotel start
 ```
 
 Hotel requires Node to be installed, if you don't have it, you can simply install it using one of the following method:
