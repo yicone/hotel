@@ -40,9 +40,7 @@ If you're upgrading, please be sure to:
 
 ## Support
 
-If you are benefiting from hotel, you can support its development on [Patreon](https://patreon.com/typicode).
-
-You can view the list of Supporters here https://thanks.typicode.com.
+If you are benefiting from hotel, you can support its development on [Patreon](https://www.patreon.com/yicone).
 
 ## Video
 
@@ -230,6 +228,7 @@ To override a value, simply add it to `~/.hotel/conf.json` and run `hotel stop &
 * [Hotel Clerk](https://github.com/therealklanni/hotel-clerk) OS X menubar
 * [HotelX](https://github.com/djyde/HotelX) Another OS X menubar (only 1.6MB)
 * [alfred-hotel](https://github.com/exah/alfred-hotel) Alfred 3 workflow
+* [raycast-hotel-manager](https://github.com/yicone/raycast-hotel-manager) Raycast extension
 * [Hotel Manager](https://github.com/hardpixel/hotel-manager) Gnome Shell extension
 
 ## FAQ
@@ -286,5 +285,3 @@ If you're behind a corporate proxy, replace `"proxy"` with your network proxy IP
 ## License
 
 MIT
-
-[Patreon](https://www.patreon.com/typicode) - [Supporters](https://thanks.typicode.com) ✨
