@@ -18,6 +18,12 @@ Hotel works great on any OS (macOS, Linux, Windows) and with __all servers :hear
 
 _To all the amazing people who have answered the Hotel survey, thanks so much <3 !_
 
+## v1.2.0
+
+* **New Features**: `restart` and `open` commands.
+* **Improvements**: CI with GitHub Actions, pnpm support.
+* **Fixes**: Node 18+ compatibility (IPv4/IPv6).
+
 ## v1.1.0
 
 * **Breaking Change**: Default TLD is now `.local` instead of `.localhost`.

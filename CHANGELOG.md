@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.2.0
+
+* **New Feature**: Added `restart` command to CLI.
+* **New Feature**: Added `open` command to CLI.
+* **Improvement**: Enabled CI with GitHub Actions (replacing Travis/AppVeyor).
+* **Improvement**: Switched to `pnpm` for dependency management.
+* **Fix**: Resolved `502 Bad Gateway` errors on Node 18+ by enforcing IPv4 (`127.0.0.1`) for proxy targets.
+
 ## 1.1.0
 
 * **Breaking Change**: Default TLD is now `.local` instead of `.localhost`.
