@@ -6,7 +6,7 @@
   * **Reason**: Modern browsers (Chrome M71+) enforce implicit proxy bypass rules for `localhost` and `*.localhost`.
   * **Migration**: Remove `"tld": "localhost"` from `~/.hotel/conf.json` or set `"tld": "local"`.
 * **Breaking Change**: Node.js requirement bumped to `>=18`.
-* Fix `http-deceiver` crash on Node 25+ (patched).
+* Fix `http-deceiver` crash on Node 20+ (patched).
 
 ## 1.0.0
 
