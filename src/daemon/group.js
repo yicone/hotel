@@ -306,7 +306,7 @@ class Group extends EventEmitter {
 
     if (item.start) {
       // Set target
-      item.target = `http://localhost:${item.env.PORT}`
+      item.target = `http://127.0.0.1:${item.env.PORT}`
 
       // If server stops, no need to wait for timeout
       item.once('stop', send)
