@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const test = require('ava')
 const sinon = require('sinon')
+const proxyquire = require('proxyquire')
 const servers = require('../../src/cli/servers')
 const cli = require('../../src/cli')
 const { serversDir } = require('../../src/common')
@@ -162,4 +163,56 @@ test('ls should ignore non-json files', t => {
   t.notThrows(() => {
     cli(['', '', 'ls'])
   })
+})
+
+// Unit tests for new commands
+const openStub = sinon.stub()
+const fetchStub = sinon.stub()
+
+const serversUnit = proxyquire('../../src/cli/servers', {
+  open: openStub,
+  './api': {
+    server: id => ({
+      start: () => fetchStub(`${id}/start`),
+      stop: () => fetchStub(`${id}/stop`)
+    })
+  },
+  '../conf': {
+    tld: 'test'
+  }
+})
+
+test.beforeEach(() => {
+  openStub.resetHistory()
+  fetchStub.resetHistory()
+  fetchStub.resolves({})
+})
+
+test('open command should open browser with correct URL', t => {
+  serversUnit.open('app-name', {})
+  t.true(openStub.calledWith('http://app-name.test'))
+})
+
+test('restart command should stop and start server', async t => {
+  await serversUnit.restart('app-name', {})
+  t.true(fetchStub.calledTwice)
+  t.true(fetchStub.firstCall.calledWith('app-name/stop'))
+  t.true(fetchStub.secondCall.calledWith('app-name/start'))
+})
+
+// Integration tests for CLI wiring
+test('cli open should call servers.open', t => {
+  sinon.stub(servers, 'open')
+  cli(['', '', 'open', 'app'])
+  sinon.assert.calledWith(servers.open, 'app')
+  servers.open.restore()
+  t.pass()
+})
+
+test('cli restart should call servers.restart', t => {
+  sinon.stub(servers, 'restart')
+  cli(['', '', 'restart', 'app'])
+  sinon.assert.calledWith(servers.restart, 'app')
+  servers.restart.restore()
+  t.pass()
 })

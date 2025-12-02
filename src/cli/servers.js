@@ -4,13 +4,18 @@ const chalk = require('chalk')
 const tildify = require('tildify')
 const mkdirp = require('mkdirp')
 const common = require('../common')
+const conf = require('../conf')
+const openBrowser = require('open')
+const api = require('./api')
 
 const serversDir = common.serversDir
 
 module.exports = {
   add,
   rm,
-  ls
+  ls,
+  restart,
+  open
 }
 
 function isUrl(str) {
@@ -158,4 +163,25 @@ function ls() {
     .join('\n\n')
 
   console.log(list)
+}
+
+function restart(cmd, opts) {
+  const id = cmd
+  api
+    .server(id)
+    .stop()
+    .then(() => api.server(id).start())
+    .then(() => {
+      console.log(chalk.green(`Restarted ${id}`))
+    })
+    .catch(err => {
+      console.error(chalk.red(err.message))
+    })
+}
+
+function open(cmd, opts) {
+  const id = cmd
+  const url = `http://${id}.${conf.tld}`
+  console.log(`Opening ${url}`)
+  openBrowser(url)
 }
