@@ -18,6 +18,13 @@ Hotel works great on any OS (macOS, Linux, Windows) and with __all servers :hear
 
 _To all the amazing people who have answered the Hotel survey, thanks so much <3 !_
 
+## v1.1.0
+
+* **Breaking Change**: Default TLD is now `.local` instead of `.localhost`.
+  * **Reason**: Modern browsers (Chrome M71+) enforce implicit proxy bypass rules for `localhost` and `*.localhost`, forcing them to resolve to `127.0.0.1` and bypassing any PAC or proxy configuration. This makes `.localhost` unusable for dynamic proxying without complex user configuration.
+  * **Reference**: [Chromium Proxy Bypass Rules](https://chromium.googlesource.com/chromium/src/+/HEAD/net/docs/proxy.md#Implicit-bypass-rules)
+  * **Migration**: If you have a `~/.hotel/conf.json`, you can remove the `"tld": "localhost"` entry to use the new default, or explicitly set `"tld": "local"`.
+
 ## v1.0.0
 
 * Fix invalid args type on Node v14
@@ -43,9 +50,9 @@ You can view the list of Supporters here https://thanks.typicode.com.
 
 ## Features
 
-* __Local domains__ - `http://project.localhost`
-* __HTTPS via local self-signed SSL certificate__ - `https://project.localhost`
-* __Wildcard subdomains__ - `http://*.project.localhost`
+* __Local domains__ - `http://project.local`
+* __HTTPS via local self-signed SSL certificate__ - `https://project.local`
+* __Wildcard subdomains__ - `http://*.project.local`
 * __Works everywhere__ - macOS, Linux and Windows
 * __Works with any server__ - Node, Ruby, PHP, ...
 * __Proxy__ - Map local domains to remote servers
@@ -72,11 +79,9 @@ You can also visit https://nodejs.org.
 
 ### Local domains (optional)
 
-To use local `.localhost` domains, you need to configure your network or browser to use hotel's proxy auto-config file or you can skip this step for the moment and go directly to http://localhost:2000
+To use local `.local` domains, you need to configure your network or browser to use hotel's proxy auto-config file or you can skip this step for the moment and go directly to http://localhost:2000
 
 [__See instructions here__](https://github.com/typicode/hotel/blob/master/docs/README.md).
-
-> **Note:** On some modern browsers (like Chrome) and operating systems, `*.localhost` domains may be forced to resolve to `127.0.0.1` via DNS, bypassing the PAC file or proxy configuration. If you encounter this issue, you can access your apps via `http://localhost:2000/app-name`.
 
 ### Add your servers
 
@@ -87,7 +92,7 @@ To use local `.localhost` domains, you need to configure your network or browser
 ~/projects/two$ hotel run 'npm start' 
 ```
 
-Visit [localhost:2000](http://localhost:2000) or [http(s)://hotel.localhost](http://hotel.localhost).
+Visit [localhost:2000](http://localhost:2000) or [http(s)://hotel.local](http://hotel.local).
 
 Alternatively you can directly go to
 
@@ -97,8 +102,8 @@ http://localhost:2000/two
 ```
 
 ```
-http(s)://one.localhost
-http(s)://two.localhost 
+http(s)://one.local
+http(s)://two.local 
 ```
 
 #### Popular servers examples
@@ -132,8 +137,8 @@ Add your remote servers
 You can now access them using
 
 ```sh
-http://aliased-address.localhost # will proxy requests to http://192.168.1.12:1337
-http://aliased-domain.localhost # will proxy requests to http://google.com
+http://aliased-address.local # will proxy requests to http://192.168.1.12:1337
+http://aliased-domain.local # will proxy requests to http://google.com
 ```
 
 ## CLI usage and options
@@ -209,8 +214,8 @@ By default, `hotel` uses the following configuration values:
   // Timeout when proxying requests to local domains
   "timeout": 5000,
   
-  // Change this if you want to use another tld than .localhost
-  "tld": 'localhost', 
+  // Change this if you want to use another tld than .local
+  "tld": 'local', 
   
   // If you're behind a corporate proxy, replace this with your network proxy IP (example: "1.2.3.4:5000")
   "proxy": false
@@ -255,7 +260,7 @@ hotel add --http-proxy-env 'server-cmd'
 hotel add --change-origin 'https://jsonplaceholder.typicode.com'
 ```
 
-_When proxying to a `https` server, you may get an error because your `.localhost` domain doesn't match the host defined in the server certificate. With this flag, `host` header is changed to match the target URL._
+_When proxying to a `https` server, you may get an error because your `.local` domain doesn't match the host defined in the server certificate. With this flag, `host` header is changed to match the target URL._
 
 #### `ENOSPC` and `EACCES` errors
 
