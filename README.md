@@ -189,7 +189,7 @@ hotel add "cmd -p %PORT%" # Windows
 
 ## Fallback URL
 
-If you're offline or can't configure your browser to use `.localhost` domains, you can __always__ access your local servers by going to [localhost:2000](http://localhost:2000).
+If you're offline or can't configure your browser to use `.${tld}` domains, you can __always__ access your local servers by going to [localhost:2000](http://localhost:2000).
 
 ## Configurations, logs and self-signed SSL certificate
 
