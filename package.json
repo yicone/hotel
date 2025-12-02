@@ -5,7 +5,7 @@
   "main": "lib",
   "bin": "lib/cli/bin.js",
   "engines": {
-    "node": ">=6"
+    "node": ">=18"
   },
   "scripts": {
     "test": "ava && npm run lint",
@@ -135,6 +135,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm test"
+    }
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "http-deceiver@1.2.7": "patches/http-deceiver@1.2.7.patch"
     }
   }
 }

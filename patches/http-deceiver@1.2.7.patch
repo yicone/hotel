@@ -1,0 +1,59 @@
+diff --git a/.npmignore b/.npmignore
+deleted file mode 100644
+index 1ca957177f035203810612d1d93a66b08caff296..0000000000000000000000000000000000000000
+diff --git a/lib/deceiver.js b/lib/deceiver.js
+index 33e14cbd6ed4f07df56f031676600b5fc1941344..9471495a58811229a5119799b766025e726bc56d 100644
+--- a/lib/deceiver.js
++++ b/lib/deceiver.js
+@@ -19,12 +19,30 @@ var kOnHeadersComplete;
+ var kOnMessageComplete;
+ var kOnBody;
+ if (mode === 'normal' || mode === 'modern') {
+-  HTTPParser = process.binding('http_parser').HTTPParser;
+-  methods = HTTPParser.methods;
+-
+-  // v6
+-  if (!methods)
+-    methods = process.binding('http_parser').methods;
++  try {
++    HTTPParser = process.binding('http_parser').HTTPParser;
++  } catch (e) {
++    // Node 12+
++    try {
++      HTTPParser = process.binding('http_parser');
++    } catch (e) {
++       // Node 25+ (no process.binding)
++       // We might need to mock HTTPParser or use internal binding if accessible,
++       // but for now let's try to gracefully handle it or use a polyfill if possible.
++       // Actually, http-deceiver relies heavily on internal HTTPParser.
++       // Let's try to require('http').HTTPParser if it existed (it doesn't).
++       // The 'methods' are usually available on http.METHODS.
++       HTTPParser = {}; 
++    }
++  }
++  
++  // Fallback for methods
++  if (HTTPParser && HTTPParser.methods) {
++    methods = HTTPParser.methods;
++  } else {
++     // Node 12+ or modern Node
++     methods = require('http').METHODS;
++  }
+ 
+   reverseMethods = {};
+ 
+@@ -32,10 +50,10 @@ if (mode === 'normal' || mode === 'modern') {
+     reverseMethods[method] = index;
+   });
+ 
+-  kOnHeaders = HTTPParser.kOnHeaders | 0;
+-  kOnHeadersComplete = HTTPParser.kOnHeadersComplete | 0;
+-  kOnMessageComplete = HTTPParser.kOnMessageComplete | 0;
+-  kOnBody = HTTPParser.kOnBody | 0;
++  kOnHeaders = (HTTPParser && HTTPParser.kOnHeaders) | 0;
++  kOnHeadersComplete = (HTTPParser && HTTPParser.kOnHeadersComplete) | 0;
++  kOnMessageComplete = (HTTPParser && HTTPParser.kOnMessageComplete) | 0;
++  kOnBody = (HTTPParser && HTTPParser.kOnBody) | 0;
+ } else {
+   kOnHeaders = 'onHeaders';
+   kOnHeadersComplete = 'onHeadersComplete';
