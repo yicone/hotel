@@ -82,11 +82,11 @@ module.exports = processArgv =>
       argv => servers.rm(argv)
     )
     .command('ls', 'List servers', {}, argv => servers.ls(argv))
-    .command('restart <cmd>', 'Restart server or proxy', {}, argv =>
-      servers.restart(argv['cmd'], argv)
+    .command('restart [name]', 'Restart server or proxy', {}, argv =>
+      servers.restart(argv['name'], argv)
     )
-    .command('open <cmd>', 'Open server or proxy', {}, argv =>
-      servers.open(argv['cmd'], argv)
+    .command('open [name]', 'Open server or proxy', {}, argv =>
+      servers.open(argv['name'], argv)
     )
     .command('start', 'Start daemon', {}, () => daemon.start())
     .command('stop', 'Stop daemon', {}, () => daemon.stop())

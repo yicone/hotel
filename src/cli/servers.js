@@ -166,7 +166,7 @@ function ls() {
 }
 
 function restart(cmd, opts) {
-  const id = cmd
+  const id = cmd || getId(process.cwd())
   api
     .server(id)
     .stop()
@@ -180,7 +180,7 @@ function restart(cmd, opts) {
 }
 
 function open(cmd, opts) {
-  const id = cmd
+  const id = cmd || getId(process.cwd())
   const url = `http://${id}.${conf.tld}`
   console.log(`Opening ${url}`)
   openBrowser(url)

@@ -193,11 +193,27 @@ test('open command should open browser with correct URL', t => {
   t.true(openStub.calledWith('http://app-name.test'))
 })
 
+test('open command should infer name from cwd', t => {
+  const cwd = process.cwd()
+  const name = path.basename(cwd)
+  serversUnit.open(undefined, {})
+  t.true(openStub.calledWith(`http://${name}.test`))
+})
+
 test('restart command should stop and start server', async t => {
   await serversUnit.restart('app-name', {})
   t.true(fetchStub.calledTwice)
   t.true(fetchStub.firstCall.calledWith('app-name/stop'))
   t.true(fetchStub.secondCall.calledWith('app-name/start'))
+})
+
+test('restart command should infer name from cwd', async t => {
+  const cwd = process.cwd()
+  const name = path.basename(cwd)
+  await serversUnit.restart(undefined, {})
+  t.true(fetchStub.calledTwice)
+  t.true(fetchStub.firstCall.calledWith(`${name}/stop`))
+  t.true(fetchStub.secondCall.calledWith(`${name}/start`))
 })
 
 // Integration tests for CLI wiring
