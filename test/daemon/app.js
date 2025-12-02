@@ -28,7 +28,7 @@ test.before(async () => {
         res.statusCode = 200
         res.end(`ok - host: ${req.headers.host}`)
       })
-      .listen(4000, resolve)
+      .listen(4000, '127.0.0.1', resolve)
   })
 
   // Add server
