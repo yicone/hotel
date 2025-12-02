@@ -11,4 +11,4 @@ The CLI SHALL provide a command to open a server in the default browser.
 
 #### Scenario: Open by name
 - **WHEN** user runs `hotel open app-name`
-- **THEN** the default browser opens `http://app-name.localhost` (or configured TLD)
+- **THEN** the default browser opens `http://app-name.local` (or configured TLD)
