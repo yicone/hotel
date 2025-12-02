@@ -1,4 +1,4 @@
-## MODIFIED Requirements
+## ADDED Requirements
 ### Requirement: Default TLD
 The system SHALL use `.local` as the default Top-Level Domain for local applications.
 
