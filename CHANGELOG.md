@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.1.0
+
+* **Breaking Change**: Default TLD is now `.local` instead of `.localhost`.
+  * **Reason**: Modern browsers (Chrome M71+) enforce implicit proxy bypass rules for `localhost` and `*.localhost`.
+  * **Migration**: Remove `"tld": "localhost"` from `~/.hotel/conf.json` or set `"tld": "local"`.
+* **Breaking Change**: Node.js requirement bumped to `>=18`.
+* Fix `http-deceiver` crash on Node 25+ (patched).
+
+## 1.0.0
+
+* Fix invalid args type on Node v14 [#361](https://github.com/typicode/hotel/pull/361)
+
 ## 0.8.7
 
 * Fix UI menu overflow
