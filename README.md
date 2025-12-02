@@ -169,6 +169,8 @@ hotel run 'nodemon app.js'                # Run server and get a temporary local
 
 hotel ls     # List servers
 hotel rm     # Remove server
+hotel open   # Open server in browser
+hotel restart # Restart server
 hotel start  # Start hotel daemon
 hotel stop   # Stop hotel daemon
 ```
