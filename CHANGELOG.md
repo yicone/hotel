@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.2
+
+* Fix npm publish warning by defining `bin` as an object.
+
 ## 1.2.1
 
 * Fix CONNECT proxy handling by waiting for server readiness and ensuring startup when a port is already assigned.

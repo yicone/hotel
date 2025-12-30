@@ -1,9 +1,11 @@
 {
   "name": "@yicone/hotel",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Local domains for everyone and more! ",
   "main": "lib",
-  "bin": "lib/cli/bin.js",
+  "bin": {
+    "hotel": "lib/cli/bin.js"
+  },
   "engines": {
     "node": ">=18"
   },

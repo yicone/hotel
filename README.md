@@ -18,6 +18,10 @@ Hotel works great on any OS (macOS, Linux, Windows) and with __all servers :hear
 
 _To all the amazing people who have answered the Hotel survey, thanks so much <3 !_
 
+## v1.2.2
+
+* **Fixes**: Define `bin` as an object to avoid npm publish warnings.
+
 ## v1.2.1
 
 * **Fixes**: CONNECT proxy now waits for server readiness and ensures servers start when a port is already assigned.
