@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.1
+
+* Fix CONNECT proxy handling by waiting for server readiness and ensuring startup when a port is already assigned.
+
 ## 1.2.0
 
 * **New Feature**: Added `restart` command to CLI.

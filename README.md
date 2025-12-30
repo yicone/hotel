@@ -18,6 +18,10 @@ Hotel works great on any OS (macOS, Linux, Windows) and with __all servers :hear
 
 _To all the amazing people who have answered the Hotel survey, thanks so much <3 !_
 
+## v1.2.1
+
+* **Fixes**: CONNECT proxy now waits for server readiness and ensures servers start when a port is already assigned.
+
 ## v1.2.0
 
 * **New Features**: `restart` and `open` commands.

@@ -399,9 +399,28 @@ class Group extends EventEmitter {
           log(`Connect - ${host} → ${port}`)
           tcpProxy.proxy(socket, port)
         } else if (item.start) {
-          const { PORT } = item.env
-          log(`Connect - ${host} → ${PORT}`)
-          tcpProxy.proxy(socket, PORT)
+          const ensurePort = () => {
+            if (item.env.PORT) {
+              item.start()
+              return Promise.resolve(item.env.PORT)
+            }
+            return getPort().then(port => {
+              item.env.PORT = port
+              item.start()
+              return port
+            })
+          }
+
+          ensurePort()
+            .then(port => {
+              log(`Connect - ${host} → ${port}`)
+              serverReady(port, () => tcpProxy.proxy(socket, port))
+            })
+            .catch(err => {
+              log('Connect - Error', err.message || err)
+              socket.end()
+            })
+          return
         } else {
           const { hostname, port } = url.parse(item.target)
           const targetPort = port || 80
