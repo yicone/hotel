@@ -1,4 +1,4 @@
-# hotel [![](https://badge.fury.io/js/hotel.svg)](https://www.npmjs.com/package/hotel)
+# hotel [![](https://badge.fury.io/js/%40yicone%2Fhotel.svg)](https://www.npmjs.com/package/@yicone/hotel)
 
 > Start apps from your browser and use local domains/https automatically
 
@@ -17,6 +17,10 @@ Hotel works great on any OS (macOS, Linux, Windows) and with __all servers :hear
 * ...
 
 _To all the amazing people who have answered the Hotel survey, thanks so much <3 !_
+
+## v1.2.3
+
+* **Fixes**: Update npm badge/link to scoped package.
 
 ## v1.2.2
 

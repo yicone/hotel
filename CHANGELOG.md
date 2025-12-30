@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.3
+
+* Update README npm badge/link to scoped package.
+
 ## 1.2.2
 
 * Fix npm publish warning by defining `bin` as an object.
